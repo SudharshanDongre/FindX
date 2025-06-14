@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FindX - Vendor Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-blue-600">FindX</a>
+      <div class="space-x-4">
+        <a href="home.html" class="text-gray-700 hover:text-blue-600">Home</a>
+        <a href="orders.html" class="text-gray-700 hover:text-blue-600">Orders</a>
+        <a href="profile.html" class="text-gray-700 hover:text-blue-600">Profile</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Vendor Details -->
+  <section class="min-h-screen px-6 py-10 pb-24">
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+
+      <h2 id="vendorName" class="text-2xl font-bold mb-4">Loading...</h2>
+      <p id="vendorPrice" class="text-lg text-gray-700 mb-4">Loading...</p>
+
+      <p id="vendorDescription" class="text-gray-600 mb-6">Tiffin details loading...</p>
+
+      <button onclick="placeOrder()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+        Place Order
+      </button>
+
+    </div>
+  </section>
+
+  <!-- Bottom Navigation -->
+  <footer class="fixed bottom-0 left-0 w-full bg-white border-t shadow-md py-2">
+    <div class="max-w-7xl mx-auto px-4 flex justify-around text-sm text-gray-700">
+      <a href="home.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0h-6" />
+        </svg>
+        Home
+      </a>
+      <a href="orders.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M20 13V7a2 2 0 00-2-2h-4.28a2 2 0 01-1.42-.59l-.58-.58a2 2 0 00-2.83 0l-.58.58A2 2 0 017.28 5H3a2 2 0 00-2 2v6h19z" />
+        </svg>
+        Orders
+      </a>
+      <a href="profile.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5.121 17.804A4 4 0 016 14h12a4 4 0 01.879 3.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Profile
+      </a>
+    </div>
+  </footer>
+
+  <!-- Vendor Details Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const vendorName = localStorage.getItem("vendorName") || "Unknown Vendor";
+      const vendorPrice = localStorage.getItem("vendorPrice") || "N/A";
+
+      document.getElementById("vendorName").textContent = vendorName;
+      document.getElementById("vendorPrice").textContent = `₹${vendorPrice} per meal`;
+
+      // Description based on vendor name (optional customization)
+      let description = "Freshly prepared home-style tiffins delivered daily.";
+      if (vendorName === "Tiffin Express") {
+        description = "Delicious North Indian meals, made with love and delivered on time.";
+      } else if (vendorName === "Healthy Bite") {
+        description = "Nutritious, balanced meals perfect for health-conscious hostelers.";
+      } else if (vendorName === "Budget Tiffins") {
+        description = "Affordable daily meals without compromising on taste.";
+      }
+
+      document.getElementById("vendorDescription").textContent = description;
+    });
+
+    function placeOrder() {
+      const vendorName = localStorage.getItem("vendorName");
+      const vendorPrice = localStorage.getItem("vendorPrice");
+      const orderDate = new Date().toLocaleString();
+
+      const newOrder = {
+        item: "Meal Combo",
+        vendor: vendorName,
+        price: vendorPrice,
+        date: orderDate
+      };
+
+      const orders = JSON.parse(localStorage.getItem("findxOrders")) || [];
+      orders.push(newOrder);
+      localStorage.setItem("findxOrders", JSON.stringify(orders));
+
+      alert("Order placed successfully!");
+      window.location.href = "orders.html";
+    }
+  </script>
+
+</body>
+
+</html>

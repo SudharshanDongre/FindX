@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FindX - Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-blue-600">FindX</a>
+      <div class="space-x-4">
+        
+       
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Page -->
+  <section class="min-h-screen px-6 py-10 pb-24">
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+
+      <!-- Profile Picture -->
+      <div class="flex justify-center mb-6">
+        <img src="profile-avatar.png" alt="Profile Picture" class="w-24 h-24 rounded-full border-2 border-blue-500 shadow">
+      </div>
+
+      <h2 class="text-2xl font-bold mb-4 text-center">Your Profile</h2>
+
+      <div class="space-y-3">
+        <div>
+          <p class="text-sm text-gray-600">Name</p>
+          <p id="profile-name" class="font-medium">Loading...</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-600">Email</p>
+          <p id="profile-email" class="font-medium">Loading...</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-600">Location</p>
+          <p id="profile-location" class="font-medium">Loading...</p>
+        </div>
+
+        <!-- Edit and Logout Buttons -->
+        <button onclick="window.location.href='edit-profile.html'" class="w-full mt-6 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Edit Profile</button>
+        <button onclick="logout()" class="w-full mt-3 bg-red-500 text-white py-2 rounded hover:bg-red-600">Logout</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Navigation -->
+  <footer class="fixed bottom-0 left-0 w-full bg-white border-t shadow-md py-2">
+    <div class="max-w-7xl mx-auto px-4 flex justify-around text-sm text-gray-700">
+      <a href="home.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0h-6" /></svg>
+        Home
+      </a>
+      <a href="orders.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V7a2 2 0 00-2-2h-4.28a2 2 0 01-1.42-.59l-.58-.58a2 2 0 00-2.83 0l-.58.58A2 2 0 017.28 5H3a2 2 0 00-2 2v6h19z" /></svg>
+        Orders
+      </a>
+      <a href="profile.html" class="flex flex-col items-center text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4 4 0 016 14h12a4 4 0 01.879 3.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+        Profile
+      </a>
+    </div>
+  </footer>
+
+  <!-- Profile Data Script -->
+  <script>
+    // Simulate fetching user data from localStorage (later replace with API calls)
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("profile-name").textContent = localStorage.getItem("name") || "Guest User";
+      document.getElementById("profile-email").textContent = localStorage.getItem("email") || "guest@example.com";
+      document.getElementById("profile-location").textContent = localStorage.getItem("location") || "Your City";
+    });
+
+    // Logout function
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>

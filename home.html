@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FindX - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <script>
+    function filterCenters() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.center-card');
+      cards.forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        if (name.includes(input)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const orders = JSON.parse(localStorage.getItem("findxOrders")) || [];
+      document.getElementById("orderBadge").textContent = orders.length;
+    });
+  </script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-blue-600">FindX</a>
+      <div class="space-x-4">
+       
+        <a href="signup.html" class="text-gray-700 hover:text-blue-600">Sign In</a>
+        <a href="login.html" class="text-gray-700 hover:text-blue-600">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="bg-blue-50 p-6 rounded-lg mb-8 text-center">
+    <h1 class="text-2xl font-bold text-blue-700 mb-2">Welcome to FindX</h1>
+    <p class="text-gray-700">Discover and order your favorite tiffins nearby!</p>
+  </div>
+
+  <!-- Home Page -->
+  <section class="min-h-screen px-6 py-10 pb-24">
+    <h2 class="text-3xl font-bold mb-6">Top-rated Tiffin Centers</h2>
+
+    <!-- Search Bar -->
+    <div class="mb-6 relative">
+      <input id="searchInput" type="text" onkeyup="filterCenters()" placeholder="Search tiffin centers..." class="w-full px-4 py-2 pl-10 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+      <div class="center-card border rounded-lg p-4 shadow hover:shadow-lg transition">
+        <img src="jain-tiffin.jpg" alt="Jain Tiffin Center" class="rounded mb-3 h-40 w-full object-cover">
+        <h3 class="text-xl font-semibold">Jain Tiffin Center <span class="text-xs bg-yellow-200 text-yellow-800 px-2 py-0.5 rounded ml-1">New</span></h3>
+        <p class="text-sm text-gray-600">Veg • ★ 4.5</p>
+        <p class="text-sm text-gray-600">near K2 Stationary</p>
+        <p class="text-sm text-green-600">Free Delivery</p>
+        <a href="details.html" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</a>
+      </div>
+
+      <div class="center-card border rounded-lg p-4 shadow hover:shadow-lg transition">
+        <img src="khushi-bhojnalay.jpg" alt="Khushi Bhojnalay" class="rounded mb-3 h-40 w-full object-cover">
+        <h3 class="text-xl font-semibold">Khushi Bhojnalay</h3>
+        <p class="text-sm text-gray-600">Veg • ★ 4.7</p>
+        <p class="text-sm text-gray-600">near K2 Stationary</p>
+        <p class="text-sm text-green-600">Free Delivery</p>
+        <a href="details.html" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</a>
+      </div>
+
+      <div class="center-card border rounded-lg p-4 shadow hover:shadow-lg transition">
+        <img src="apka-bhojnalay.jpg" alt="Apka Bhojnalay" class="rounded mb-3 h-40 w-full object-cover">
+        <h3 class="text-xl font-semibold">Apka Bhojnalay</h3>
+        <p class="text-sm text-gray-600">Home Style • ★ 4.8</p>
+        <p class="text-sm text-gray-600">near Gurukripa Resturant A.B. Road,Pigdambar</p>
+        <p class="text-sm text-green-600">Free Delivery</p>
+        <a href="details.html" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bottom Navigation -->
+  <footer class="fixed bottom-0 left-0 w-full bg-white border-t shadow-md py-2">
+    <div class="max-w-7xl mx-auto px-4 flex justify-around text-sm text-gray-700">
+      <a href="home.html" class="flex flex-col items-center text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0h-6" /></svg>
+        Home
+      </a>
+      <a href="orders.html" class="flex flex-col items-center hover:text-blue-600 relative">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V7a2 2 0 00-2-2h-4.28a2 2 0 01-1.42-.59l-.58-.58a2 2 0 00-2.83 0l-.58.58A2 2 0 017.28 5H3a2 2 0 00-2 2v6h19z" /></svg>
+        Orders <span id="orderBadge" class="ml-1 bg-red-500 text-white text-xs px-1.5 rounded-full absolute -top-1 -right-2">0</span>
+      </a>
+      <a href="profile.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4 4 0 016 14h12a4 4 0 01.879 3.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+        Profile
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>

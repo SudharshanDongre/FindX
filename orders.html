@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FindX - Orders</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-blue-600">FindX</a>
+      <div class="space-x-4">
+        
+       
+      </div>
+    </div>
+  </nav>
+
+  <!-- Orders Section -->
+  <section class="min-h-screen px-6 py-10 pb-24">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">Your Orders</h2>
+
+      <!-- Dynamic Orders List -->
+      <div id="ordersList" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- Bottom Navigation -->
+  <footer class="fixed bottom-0 left-0 w-full bg-white border-t shadow-md py-2">
+    <div class="max-w-7xl mx-auto px-4 flex justify-around text-sm text-gray-700">
+      <a href="home.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0h-6" />
+        </svg>
+        Home
+      </a>
+      <a href="orders.html" class="flex flex-col items-center text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M20 13V7a2 2 0 00-2-2h-4.28a2 2 0 01-1.42-.59l-.58-.58a2 2 0 00-2.83 0l-.58.58A2 2 0 017.28 5H3a2 2 0 00-2 2v6h19z" />
+        </svg>
+        Orders
+      </a>
+      <a href="profile.html" class="flex flex-col items-center hover:text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5.121 17.804A4 4 0 016 14h12a4 4 0 01.879 3.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Profile
+      </a>
+    </div>
+  </footer>
+
+  <!-- Script for Loading Orders -->
+  <script>
+    // Fetch orders from localStorage
+    const orders = JSON.parse(localStorage.getItem("findxOrders")) || [];
+
+    // Get the orders list container
+    const ordersList = document.getElementById("ordersList");
+
+    // If no orders, show a message
+    if (orders.length === 0) {
+      ordersList.innerHTML = `
+        <p class="text-gray-600 text-center">No orders placed yet.</p>
+      `;
+    }
+
+    // Render each order card
+    orders.forEach(order => {
+      const orderCard = document.createElement("div");
+      orderCard.className = "bg-white p-4 rounded-lg shadow";
+
+      orderCard.innerHTML = `
+        <div class="flex justify-between">
+          <h3 class="font-semibold">${order.item}</h3>
+          <span class="text-sm text-yellow-600">On the Way</span>
+        </div>
+        <p class="text-sm text-gray-600">From: ${order.vendor} | ₹${order.price}</p>
+        <p class="text-sm text-gray-500">Ordered on: ${order.date}</p>
+      `;
+
+      ordersList.appendChild(orderCard);
+    });
+  </script>
+
+</body>
+
+</html>
